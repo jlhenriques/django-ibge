@@ -18,3 +18,19 @@ def uf_list_view(request, cod_reg):
             if sigla in ufs_da_regiao]
     context = {'object_list': ufs}
     return http.JsonResponse(context)
+
+def meso_regiao_list_view(request, uf):
+    res = MesoRegiao.objects.filter(uf=uf)
+    mesos = []
+    for registro in res:
+        mesos.append({'id':registro.id, 'nome':registro.nome})
+    context = {'object_list': mesos}
+    return http.JsonResponse(context)
+
+def municipio_list_view(request, meso):
+    res = Municipio.objects.filter(meso_regiao=meso)
+    munis = []
+    for registro in res:
+        munis.append({'id':registro.id, 'nome':registro.nome})
+    context = {'object_list': munis}
+    return http.JsonResponse(context)
