@@ -53,17 +53,17 @@
       });
     };
     $(document).ready(function(){
-        $("#regiao").click(function(event){
+        $("#regiao").change(function(event){
             var sel = $("#regiao option:selected");
             $("#uf, #meso, #muni").empty();
             preencher('/api/regiao/'+sel.attr('value')+'/', '#uf');
         });
-        $("#uf").click(function(event){
+        $("#uf").change(function(event){
             var sel = $("#uf option:selected");
             $("#meso, #muni").empty();
             preencher('/api/uf/'+sel.attr('value')+'/', '#meso');
         });
-        $("#meso").click(function(event){
+        $("#meso").change(function(event){
             var sel = $("#meso option:selected");
             $("#muni").empty();
             preencher('/api/mesoreg/'+sel.attr('value')+'/', '#muni');
@@ -71,4 +71,3 @@
     });
 })(django.jQuery)
 </script>
-
