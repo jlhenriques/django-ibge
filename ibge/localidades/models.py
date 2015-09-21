@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from django.contrib.localflavor.br import br_states
+from localflavor.br import br_states
 
 REGIOES = {
     '1': u'Norte',
@@ -50,4 +50,3 @@ class Localidade(models.Model):
         else:
             res = u''
         return res
-

@@ -8,7 +8,7 @@ from django import http
 from django.views.generic.list import BaseListView
 
 from django.forms.models import model_to_dict
-from django.contrib.localflavor.br import br_states
+from localflavor.br import br_states
 
 class JSONResponseMixin(object):
     ''' Classe `mixin` baseada no exemplo em:
@@ -63,6 +63,3 @@ class MunicipioListView(JSONView):
             meso = self.kwargs['meso']
             queryset = queryset.filter(meso_regiao=meso)
         return [model_to_dict(mr) for mr in queryset]
-
-
-

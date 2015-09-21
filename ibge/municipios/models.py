@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from django.contrib.localflavor.br import br_states
+from localflavor.br import br_states
 
 UFS = dict([(sigla, nome) for sigla, nome in br_states.STATE_CHOICES])
 
@@ -44,6 +44,16 @@ REGIOES_UFS = [
     (5, u'MT')
 ]
 
+
+def ufs_por_regiao():
+    ufs_regiao = {}
+    for cod_reg, uf in REGIOES_UFS:
+        ufs_regiao.setdefault(cod_reg, []).append(uf)
+    return ufs_regiao
+
+DIC_REGIOES_UFS = ufs_por_regiao()
+
+
 class Municipio(models.Model):
     uf = models.CharField(max_length=2, db_index=True,
                           choices=br_states.STATE_CHOICES)
@@ -77,3 +87,5 @@ class MesoRegiao(models.Model):
 
     def __unicode__(self):
         return u'%s, %s' % (self.nome, self.uf)
+
+    __str__ = __unicode__
